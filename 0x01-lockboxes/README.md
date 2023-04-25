@@ -37,3 +37,7 @@ carrie@ubuntu:~/0x01-lockboxes$
 ```
 
 ### Major concept applied:
+
+The major concept applied in the final code is using a breadth-first search algorithm to check if all the boxes can be unlocked. This is done by starting with the first box (index 0), adding its keys to a set of available keys, and then checking each key in the set to see if it can unlock a new box. If a key can unlock a new box, the index of that box is added to a set of opened boxes, and its keys are added to the set of available keys. This process continues until all boxes have been opened or all available keys have been tried and no new boxes can be opened
+
+This approach ensures that each box is only checked once, and the algorithm will terminate early if all boxes have been opened. It also avoids the need to generate a separate list of all available box indices, as I did in an earlier version, as the set of opened boxes can be used instead.

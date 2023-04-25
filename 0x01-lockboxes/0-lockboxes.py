@@ -12,27 +12,27 @@ There can be keys that do not have boxes
 The first box boxes[0] is unlocked
 Return True if all boxes can be opened, else return False
 """
-""" LOGIC: First box is open, it should contain the a number which is the index
-(position on the list) of the next box or another box and so on,
-until all boxes are opened. So, I need to compare contents of
-boxes with available indexes.
 
-for example boxes = [[1], [2], [3], [4], []]. Total available index are:
-0, 1, 2, 3, 4. note how the content of each box match those index,
-hence this would be TRUE that all boxes can be unlocked.
+""" LOGIC:
+This implementation keeps track of two sets: `keyRing`, which contains
+the keys that have been obtained so far, and `unlockedBoxes`, which contains
+the indices of the boxes that have been unlocked so far. The function then
+loops until no more boxes can be unlocked, trying to unlock any box that
+has not been unlocked yet and for which the key is available.
+
 """
 
 
 def canUnlockAll(boxes):
-    """"function to unlock boxes"""
-
-    """keep track of unique keys and unlocked boxes"""
+    """keyRing initialized with the contents of the first sublist in `boxes`
+    (already unlocked), `unlockedBoxes` initialized with the value 0,
+    representing the first box that is already unlocked"""
     keyRing = set(boxes[0])
     unlockedBoxes = {0}
 
-    """loop until no more boxes can be unlocked"""
+    """loop until no more boxes can be unlocked (`break`)"""
     while True:
-        """keep track of how many boxes were unlocked in this iteration"""
+        """how many boxes have been unlocked in this iteration?"""
         b_unlocked = 0
         """try to unlock remaining boxes"""
         for i in range(len(boxes)):
