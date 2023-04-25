@@ -24,25 +24,25 @@ hence this would be TRUE that all boxes can be unlocked.
 
 
 def canUnlockAll(boxes):
-    """
-    function to unlock all boxes
+    """"function to unlock boxes"""
 
-    """
-    if boxes is None:
-        return False
-    if len(boxes) == 1:
-        return True
+    """keep track of unique keys and unlocked boxes"""
+    keyRing = set(boxes[0])
+    unlockedBoxes = {0}
 
-    keyRing = []
-    for item in boxes:
-        for num in item:
-            keyRing.append(num)
+    """loop until no more boxes can be unlocked"""
+    while True:
+        """keep track of how many boxes were unlocked in this iteration"""
+        b_unlocked = 0
+        """try to unlock remaining boxes"""
+        for i in range(len(boxes)):
+            if i not in unlockedBoxes and i in keyRing:
+                unlockedBoxes.add(i)
+                keyRing.update(boxes[i])
+                b_unlocked += 1
+        """if no boxes were unlocked, we're done"""
+        if b_unlocked == 0:
+            break
 
-    indexes = [0]
-
-    for idx in indexes:
-        for key in boxes[idx]:
-            if key not in indexes:
-                indexes.append(key)
-
-    return len(indexes) == len(boxes)
+    """check if all boxes were unlocked"""
+    return len(unlockedBoxes) == len(boxes)
