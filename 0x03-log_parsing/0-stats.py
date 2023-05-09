@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Log parsing: reads stdin line by line and computes metrics."""
+"""
+Log parsing: reads stdin line by line and computes metrics.
+"""
+
 import sys
 
 
@@ -21,11 +24,11 @@ if __name__ == "__main__":
         for line in sys.stdin:
             count += 1
             split_line = line.split()
-            if len(split_line) == 9:
-                if split_line[8].isdigit():
-                    file_size += int(split_line[8])
-                if split_line[7] in status_codes:
-                    status_codes[split_line[7]] += 1
+            if len(split_line) >= 2 and len(split_line) <= 9:
+                if split_line[-1].isdigit():
+                    file_size += int(split_line[-1])
+                if split_line[-2] in status_codes:
+                    status_codes[split_line[-2]] += 1
             if count % 10 == 0:
                 print_stats(file_size, status_codes)
         print_stats(file_size, status_codes)
