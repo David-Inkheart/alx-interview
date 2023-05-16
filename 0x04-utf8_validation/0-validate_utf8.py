@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
-
+method that determines if a given data set represents a valid UTF-8 encoding
 LOGIC:
 In UTF-8 encoding, each character can be represented by 1 to 4 bytes,
 with each byte having a value between 0 and 255 (i.e., a single byte
