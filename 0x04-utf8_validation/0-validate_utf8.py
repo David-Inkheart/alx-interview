@@ -15,11 +15,12 @@ But, this is not enough. The specific patterns of a UTF-8 Binary
 also must be matched
 """
 
-from typing import List
 
-
-def validUTF8(data: List[int]) -> bool:
+def validUTF8(data) -> bool:
     """
     determines if a given data set represents a valid UTF-8 encoding
     """
+    if data is None:
+        return False
+
     return all(0 <= item <= 255 for item in data)
