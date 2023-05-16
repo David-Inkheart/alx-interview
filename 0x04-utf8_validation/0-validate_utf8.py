@@ -10,6 +10,9 @@ each integer in the list must have a value between 0 and 255, inclusive.
 If a value greater than 255 is encountered in a list of integers representing
 a UTF-8 encoding, it is considered an invalid encoding, since the byte value
 is outside the range of valid byte values in UTF-8.
+
+But, this is not enough. The specific patterns of a UTF-8 Binary
+also must be matched
 """
 from typing import List
 
