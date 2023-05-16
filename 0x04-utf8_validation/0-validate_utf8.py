@@ -16,10 +16,8 @@ For a single point that can be converted to single byte, it must be:
 so, to check that a number is properly encoded as a utf-8,
 then check that it has a valid binary utf-8 format as prescribed above.
 
-bit shifting is employed to make this concise and straightforward. i.e.
-byte >> 5 shifts the bits of byte 5 positions to the right.
-This is used to check the first 3 bits of byte to identify if it
-represents the start of a 2-byte character.
+bit shifting and masking is employed to make this concise and
+straightforward
 """
 
 
@@ -33,25 +31,29 @@ def validUTF8(data) -> bool:
     remaining_bytes = 0
 
     for byte_value in data:
+        mask = 1 << 7
+
         if remaining_bytes == 0:
             # This byte should start a new character
-            if byte_value >> 5 == 0b110:
-                # 2-byte character: first byte starts with '110'
-                remaining_bytes = 1
-            elif byte_value >> 4 == 0b1110:
-                # 3-byte character: first byte starts with '1110'
-                remaining_bytes = 2
-            elif byte_value >> 3 == 0b11110:
-                # 4-byte character: first byte starts with '11110'
-                remaining_bytes = 3
-            elif byte_value >> 7 == 0b1:
-                # Invalid character, should start with '0'
+            while byte_value & mask:
+                # Count the number of leading '1' bits to determine the
+                # number of bytes in the character
+                remaining_bytes += 1
+                mask >>= 1
+
+            if remaining_bytes == 0:
+                # No leading '1' bit found, move to the next byte
+                continue
+
+            if remaining_bytes == 1 or remaining_bytes > 4:
+                # Invalid number of bytes for a character (must be 2-4)
                 return False
         else:
             # This byte should be part of an existing character
             if byte_value >> 6 != 0b10:
-                # Invalid continuation byte, should start with '10'
+                # Invalid continuation byte, it should start with '10'
                 return False
-            remaining_bytes = remaining_bytes - 1
-    # All bytes have been checked and no incomplete character is left
+
+        remaining_bytes -= 1
+
     return remaining_bytes == 0
