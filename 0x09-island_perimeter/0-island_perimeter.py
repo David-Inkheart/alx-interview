@@ -18,6 +18,15 @@ def island_perimeter(grid):
     """
     Returns perimeter of the island described in grid
     """
+    # validate grid dimensions
+    rows = len(grid)
+    if not rows or rows == 0 or row > 100:
+        return 0
+    cols = len(grid[0])
+    if not cols or cols == 0 or cols > 100:
+        return 0
+
+    # Calculate the perimeter
     island_cell = 0
     flat_list = [num for row in grid for num in row]
     for cell in flat_list:
