@@ -28,6 +28,15 @@ def island_perimeter(grid):
     if rows > 100 or cols > 100:
         return 0
 
+    # Validate grid content
+    island_count = 0
+    for row in grid:
+        if len(row) != cols:
+            return 0
+        for cell in row:
+            if cell not in [0, 1]:
+                return 0
+
     # Calculate the perimeter
     island_cell = 0
     flat_list = [num for row in grid for num in row]
