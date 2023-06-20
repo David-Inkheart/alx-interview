@@ -22,27 +22,17 @@ Given a grid representing an island where:
 The task is to implement a function `island_perimeter(grid)`
 that returns the perimeter of the island described in the grid.
 
-## My Solution
+## Solution
 
-The solution provided here is a straightforward and efficient approach to solve
-the problem. The algorithm employed can be summarized as follows:
+The solution provided here is a compact and efficient approach to solve the problem. The algorithm employed can be summarized as follows:
 
-1. Initialize a variable `island_cell` to track the count of land cells.
-2. Flatten the grid into a single list using list comprehension.
-3. Iterate over each cell in the flattened list.
-4. If the cell value is 1, increment the `island_cell` count.
-5. If `island_cell` is 0, return 0 (indicating no land cells).
-6. Calculate the perimeter by multiplying the `island_cell` count by 2 and adding 2
-(to account for the outer edges of the island) or perimeter formular of a rectangle.
-7. Return the calculated perimeter.
+-  Iterate over each cell in the grid.
+- If the cell value is 1, increment the perimeter count by 4.
+- Check the adjacent cells (above and to the left) of the current cell.
+  - If an adjacent cell is also a land cell, subtract 2 from the perimeter count to account for the shared side.
+- Finally, return the calculated perimeter count.
 
-The solution has a time complexity of O(N), where N is the total number of cells in
-the grid. It effectively counts the land cells and calculates the perimeter based
-on the count.
-
-The provided solution meets the requirements of the problem, produces the expected
-output for the given test case and possible edge cases,
-and handles the constraint of not having "lakes" inside the island.
+The solution utilizes nested loops to iterate over each cell and performs constant time checks to calculate the perimeter.
 
 ## Usage
 
@@ -54,7 +44,6 @@ To use the solution, you can follow these steps:
 
 Example usage:
 
-```python
 grid = [
     [0, 0, 0, 0, 0, 0],
     [0, 1, 0, 0, 0, 0],
