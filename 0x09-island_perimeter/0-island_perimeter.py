@@ -18,7 +18,6 @@ def island_perimeter(grid):
     """
     Returns perimeter of the island described in grid
     """
-    # Validate grid dimensions and content
     rows = len(grid)
     if rows == 0:
         return 0
