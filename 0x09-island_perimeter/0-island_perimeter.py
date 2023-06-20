@@ -20,10 +20,12 @@ def island_perimeter(grid):
     """
     # validate grid dimensions
     rows = len(grid)
-    if not rows or rows == 0 or row > 100:
+    if rows == 0:
         return 0
     cols = len(grid[0])
-    if not cols or cols == 0 or cols > 100:
+    if cols == 0:
+        return 0
+    if rows > 100 or cols > 100:
         return 0
 
     # Calculate the perimeter
