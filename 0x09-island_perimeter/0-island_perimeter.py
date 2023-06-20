@@ -17,7 +17,6 @@ returns the perimeter of the island described in grid
 def island_perimeter(grid):
     """
     Returns perimeter of the island described in grid
-    """
     island_cell = 0
     flat_list = [num for row in grid for num in row]
     for cell in flat_list:
@@ -27,7 +26,6 @@ def island_perimeter(grid):
         return 0
     perimeter = 2 * (island_cell + 1)
     """
-    # Validate grid dimensions and content
     rows = len(grid)
     if rows == 0:
         return 0
@@ -37,14 +35,13 @@ def island_perimeter(grid):
     if rows > 100 or cols > 100:
         return 0
     perimeter = sum(
-        4
-        - (i > 0 and grid[i - 1][j] == 1)
-        - (j > 0 and grid[i][j - 1] == 1)
-        - (i < rows - 1 and grid[i + 1][j] == 1)
-        - (j < cols - 1 and grid[i][j + 1] == 1)
+        4 - (i > 0 and grid[i - 1][j] == 1)
+          - (j > 0 and grid[i][j - 1] == 1)
+          - (i < rows - 1 and grid[i + 1][j] == 1)
+          - (j < cols - 1 and grid[i][j + 1] == 1)
         for i in range(rows)
         for j in range(cols)
         if grid[i][j] == 1
-    )"""
+    )
 
     return perimeter
