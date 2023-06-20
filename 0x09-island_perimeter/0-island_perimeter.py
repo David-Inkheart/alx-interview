@@ -38,12 +38,34 @@ def island_perimeter(grid):
                 return 0
 
     # Calculate the perimeter
-    island_cell = 0
+    """island_cell = 0
     flat_list = [num for row in grid for num in row]
     for cell in flat_list:
         if (cell == 1):
             island_cell += 1
     if (island_cell == 0):
         return 0
-    perimeter = 2 * (island_cell + 1)
+    perimeter = 2 * (island_cell + 1)"""
+
+    perimeter = sum(
+        4
+        - (i > 0 and grid[i - 1][j] == 1)
+        - (j > 0 and grid[i][j - 1] == 1)
+        - (i < rows - 1 and grid[i + 1][j] == 1)
+        - (j < cols - 1 and grid[i][j + 1] == 1)
+        for i in range(rows)
+        for j in range(cols)
+        if grid[i][j] == 1
+    )
+
+    """perimeter = 0
+    for i in range(rows):
+        for j in range(cols):
+            if grid[i][j] == 1:
+                perimeter += 4
+                if i > 0 and grid[i - 1][j] == 1:
+                    perimeter -= 2
+                if j > 0 and grid[i][j - 1] == 1:
+                    perimeter -= 2"""
+
     return perimeter
