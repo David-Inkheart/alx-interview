@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" solving the prime game """
+""" Solving the prime game """
 
 
 def isWinner(x, nums):
@@ -39,13 +39,18 @@ def c_primes(n):
     Returns:
       int: The count of prime numbers.
     """
-    primes = 0
+    if n < 2:
+        return 0
 
-    for num in range(2, n + 1):
-        if prime_num(num):
-            primes += 1
+    primes = [True] * (n + 1)
+    primes[0] = primes[1] = False
 
-    return primes
+    for i in range(2, int(n ** 0.5) + 1):
+        if primes[i]:
+            for j in range(i * i, n + 1, i):
+                primes[j] = False
+
+    return sum(primes)
 
 
 def prime_num(num):
