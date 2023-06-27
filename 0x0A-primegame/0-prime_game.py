@@ -80,7 +80,12 @@ def isWinner(x, nums):
 
 
 def isWinner(x, nums):
+    """ Solving the prime game """
+    if not nums or x < 1:
+        return None
+
     def filter_primes(n):
+        """ Sieve of Eratosthenes """
         primes = [True] * (n + 1)
         primes[0] = primes[1] = False
         p = 2
@@ -92,6 +97,7 @@ def isWinner(x, nums):
         return primes
 
     def optimus_prime(primes, num):
+        """ Get the max prime"""
         while num >= 0 and not primes[num]:
             num -= 1
         return num
