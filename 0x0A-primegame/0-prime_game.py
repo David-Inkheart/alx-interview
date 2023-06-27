@@ -81,9 +81,6 @@ def isWinner(x, nums):
 
 def isWinner(x, nums):
     """ Solving the prime game """
-    if not nums or x < 1:
-        return None
-
     def filter_primes(n):
         """ Sieve of Eratosthenes """
         primes = [True] * (n + 1)
