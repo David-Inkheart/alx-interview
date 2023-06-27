@@ -3,6 +3,17 @@
 
 
 def isWinner(x, nums):
+    """
+    Determines the winner of each game played.
+
+    Args:
+      x (int): The number of rounds.
+      nums (list): An array of n for each round.
+
+    Returns:
+      str: Name of the player who won the most rounds.
+           If the winner cannot be determined, returns None.
+    """
     if not nums or x < 1:
         return None
 
@@ -19,6 +30,15 @@ def isWinner(x, nums):
 
 
 def c_primes(n):
+    """
+    Counts the number of prime numbers up to and including n.
+
+    Args:
+      n (int): The upper limit.
+
+    Returns:
+      int: The count of prime numbers.
+    """
     if n < 2:
         return 0
 
@@ -34,6 +54,15 @@ def c_primes(n):
 
 
 def prime_num(num):
+    """
+    Checks if a number is prime.
+
+    Args:
+      num (int): The number to check.
+
+    Returns:
+      bool: True if the number is prime, False otherwise.
+    """
     if num < 2:
         return False
 
