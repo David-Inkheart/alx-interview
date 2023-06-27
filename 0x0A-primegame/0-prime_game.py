@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Solving the prime game
+""" Solving the prime game """
+
 
 def isWinner(x, nums):
     if not nums or x < 1:
@@ -41,81 +42,3 @@ def prime_num(num):
             return False
 
     return True
-
-def isWinner(x, nums):
-    def sieve(n):
-        primes = [True] * (n + 1)
-        primes[0] = primes[1] = False
-        p = 2
-        while p * p <= n:
-            if primes[p]:
-                for i in range(p * p, n + 1, p):
-                    primes[i] = False
-            p += 1
-        return primes
-
-    def get_max_prime(primes, num):
-        while num >= 0 and not primes[num]:
-            num -= 1
-        return num
-
-    wins = {'Maria': 0, 'Ben': 0}
-
-    for i in range(x):
-        n = nums[i]
-        primes = sieve(n)
-        max_prime = get_max_prime(primes, n)
-        total_moves = max_prime // 2 + 1
-        if total_moves % 2 == 0:
-            wins['Ben'] += 1
-        else:
-            wins['Maria'] += 1
-
-    if wins['Maria'] > wins['Ben']:
-        return 'Maria'
-    elif wins['Maria'] < wins['Ben']:
-        return 'Ben'
-    else:
-        return None """
-
-
-def isWinner(x, nums):
-    """ Solving the prime game """
-    def filter_primes(n):
-        """ Sieve of Eratosthenes """
-        primes = [True] * (n + 1)
-        primes[0] = primes[1] = False
-        p = 2
-        while p * p <= n:
-            if primes[p]:
-                for i in range(p * p, n + 1, p):
-                    primes[i] = False
-            p += 1
-        return primes
-
-    def optimus_prime(primes, num):
-        """ Get the max prime"""
-        while num >= 0 and not primes[num]:
-            num -= 1
-        return num
-
-    scores = {'Maria': 0, 'Ben': 0}
-
-    for i in range(x):
-        n = nums[i]
-        primes = filter_primes(n)
-        max_prime = optimus_prime(primes, n)
-        total_moves = max_prime // 2 + 1
-        if total_moves % 2 == 0:
-            scores['Ben'] += 1
-        else:
-            scores['Maria'] += 1
-
-    if scores['Maria'] > scores['Ben']:
-        megatron = 'Maria'
-    elif scores['Maria'] < scores['Ben']:
-        megatron = 'Ben'
-    else:
-        megatron = None
-
-    return megatron
