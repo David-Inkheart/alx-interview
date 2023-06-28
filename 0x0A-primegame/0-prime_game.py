@@ -6,10 +6,8 @@ def remove_multiples(num, lst):
     """
     Removes multiples of a given number from a list
     """
-    for item in lst:
-        if item % num == 0:
-            lst.remove(item)
-    return lst
+    new_lst = [item for item in lst if item % num != 0]
+    return new_lst
 
 
 def is_prime(number):
@@ -49,10 +47,10 @@ def isWinner(x, nums):
     Assuming Maria always goes first and both players play optimally,
     determine who the winner of each game is.
     """
-    if not nums or x < 1:
-        return None
-    if any(num <= 0 for num in nums):
-        return None
+    # if not nums or x < 1:
+    #     return None
+    # if any(num <= 0 for num in nums):
+    #     return None
     players = {'Maria': 0, 'Ben': 0}
     cluster = set()
     for elem in range(x):
