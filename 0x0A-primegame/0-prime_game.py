@@ -2,84 +2,12 @@
 """ Solving the prime game """
 
 
-# def isWinner(x, nums):
-#     """
-#     Determines the winner of each game played.
-
-#     Args:
-#       x (int): The number of rounds.
-#       nums (list): An array of n for each round.
-
-#     Returns:
-#       str: Name of the player who won the most rounds.
-#            If the winner cannot be determined, returns None.
-#     """
-#     if not nums or x < 1:
-#         return None
-
-#     wins = 0
-
-#     for n in nums:
-#         primes = c_primes(n)
-#         if primes % 2 == 1:
-#             wins += 1
-
-#     if wins % 2 == 0:
-#         return "Ben"
-#     return "Maria"
-
-
-# def c_primes(n):
-#     """
-#     Counts the number of prime numbers up to and including n.
-
-#     Args:
-#       n (int): The upper limit.
-
-#     Returns:
-#       int: The count of prime numbers.
-#     """
-#     if n < 2:
-#         return 0
-
-#     primes = [True] * (n + 1)
-#     primes[0] = primes[1] = False
-
-#     for i in range(2, int(n ** 0.5) + 1):
-#         if primes[i]:
-#             for j in range(i * i, n + 1, i):
-#                 primes[j] = False
-
-#     return sum(primes)
-
-
-# def prime_num(num):
-#     """
-#     Checks if a number is prime.
-
-#     Args:
-#       num (int): The number to check.
-
-#     Returns:
-#       bool: True if the number is prime, False otherwise.
-#     """
-#     if num < 2:
-#         return False
-
-#     for i in range(2, int(num ** 0.5) + 1):
-#         if num % i == 0:
-#             return False
-
-#     return True
-
-def remove_multiples(num, targets):
+def remove_multiples(num, lst):
     """
     Removes multiples of a given number from a list
     """
-    for i in targets:
-        if i % num == 0:
-            targets.remove(i)
-    return targets
+    new_lst = [item for item in lst if item % num != 0]
+    return new_lst
 
 
 def is_prime(number):
@@ -88,7 +16,7 @@ def is_prime(number):
     """
     if number == 1:
         return False
-    for j in range(2, number):
+    for j in range(2, int(number ** 0.5) + 1):
         if number % j == 0:
             return False
     return True
@@ -103,10 +31,7 @@ def count_primes(nums):
     for i in range(1, len(target) + 1):
         if is_prime(i):
             counter += 1
-            target.remove(i)
             target = remove_multiples(i, target)
-        else:
-            pass
     return counter
 
 
@@ -122,6 +47,10 @@ def isWinner(x, nums):
     Assuming Maria always goes first and both players play optimally,
     determine who the winner of each game is.
     """
+    if not nums or x < 1:
+        return None
+    if any(num <= 0 for num in nums):
+        return None
     players = {'Maria': 0, 'Ben': 0}
     cluster = set()
     for elem in range(x):
