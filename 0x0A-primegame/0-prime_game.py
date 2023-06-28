@@ -49,8 +49,6 @@ def isWinner(x, nums):
     """
     if not nums or x < 1:
         return None
-    # if any(num <= 0 for num in nums):
-    #     return None
     players = {'Maria': 0, 'Ben': 0}
     cluster = set()
     for elem in range(x):
