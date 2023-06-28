@@ -6,8 +6,10 @@ def remove_multiples(num, lst):
     """
     Removes multiples of a given number from a list
     """
-    new_lst = [item for item in lst if item % num != 0]
-    return new_lst
+    for item in lst:
+        if item % num == 0:
+            lst.remove(item)
+    return lst
 
 
 def is_prime(number):
